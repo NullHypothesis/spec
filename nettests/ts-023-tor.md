@@ -36,7 +36,13 @@ In JSON format the input targets have this structure:
 ```
 
 - `id` (`string`): the unique identifier of the target chosen
-by who generated the input targets.
+by who generated the input targets.  `id` is a SHA-256 hash over
+the concatenation of a bridge's IP:port tuple and its fingerprint:
+For example, the key of the following bridge:
+    1.2.3.4:1234 1234567890123456789012345678901234567890
+will be:
+    echo -n '1.2.3.4:12341234567890123456789012345678901234567890' | sha256sum
+    19bc59fa00d29729edea87368ceb062b9fad66759c0fcd6b7f8680ca14452fb8
 
 - `address` (`string`): the address of the target.
 
